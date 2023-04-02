@@ -16,10 +16,10 @@ class CalculateBMIVC: UIViewController {
 
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-
+    
     //MARK: - Action Methods
     
     @IBAction func heightSliderChanged(_ sender: UISlider) {
@@ -36,17 +36,28 @@ class CalculateBMIVC: UIViewController {
     
     @IBAction func calculateBMI(_ sender: UIButton) {
         
-        let bmi = weightSlider.value/pow(heightSlider.value, 2)
+        self.performSegue(withIdentifier: "goToResult", sender: self)
         
-        print("height = \(String(format: "%.1f", heightSlider.value))")
-        print("weight = \(String(format: "%.1f", weightSlider.value))")
-        print("bmi = \(String(format: "%.2f", bmi))")
-        
-//        kg/(height square)
-        
-        
-        
+//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResultVC") as! ResultVC
+//        vc.bmiValue = "testing"
+//        self.present(vc, animated: true)
     }
+    
+    fileprivate func getBMI() -> String {
+        
+        let bmi = weightSlider.value/pow(heightSlider.value, 2)
+        return "\(String(format: "%.2f", bmi))"
+    }
+    
+    //MARK: - Segues & Navigations
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "goToResult" {
+            let destinationVC = segue.destination as! ResultVC
+            destinationVC.setBmiValue(inputBMI: getBMI())
+        }
+    }
+    
     
 }
 

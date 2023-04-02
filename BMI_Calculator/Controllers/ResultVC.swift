@@ -9,10 +9,22 @@ import UIKit
 
 class ResultVC: UIViewController {
 
+    @IBOutlet weak var lbResult: UILabel!
+    var bmiValue: String = ""
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        lbResult.text = bmiValue
     }
 
-
+    func setBmiValue(inputBMI: String) {
+        bmiValue = inputBMI
+    }
+    
+    @IBAction func recalculateBMI(_ sender: UIButton) {
+        
+        dismiss(animated: true)
+    }
+    
 }
