@@ -9,17 +9,22 @@ import UIKit
 
 class ResultVC: UIViewController {
 
+    @IBOutlet weak var lbAdvice: UILabel!
     @IBOutlet weak var lbResult: UILabel!
-    var bmiValue: String = ""
+    var bmi: BMI?
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        lbResult.text = bmiValue
+        updateUI()
     }
-
-    func setBmiValue(inputBMI: String) {
-        bmiValue = inputBMI
+    
+    func updateUI() {
+        
+        let bmiValue = bmi?.value ?? 0.0
+        lbResult.text = "\(String(format: "%.2f", bmiValue))"
+        lbAdvice.text = bmi?.advice ?? ""
+        self.view.backgroundColor = bmi?.color ?? UIColor.white
     }
     
     @IBAction func recalculateBMI(_ sender: UIButton) {

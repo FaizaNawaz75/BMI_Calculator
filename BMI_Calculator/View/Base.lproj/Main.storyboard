@@ -209,6 +209,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="lbAdvice" destination="8O9-hg-1vF" id="obu-KM-yIH"/>
                         <outlet property="lbResult" destination="1qH-kK-aT8" id="Bih-q3-PaN"/>
                     </connections>
                 </viewController>
